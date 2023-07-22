@@ -23,7 +23,6 @@ public class Movimiento {
     private Cuenta cuenta;
 
     private Date fecha;
-    private TipoCuenta tipo;
+    private TipoMovimiento tipo;
     private BigDecimal valor;
-    private BigDecimal saldo;
 }

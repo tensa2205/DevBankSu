@@ -35,12 +35,21 @@ public class MovimientoService {
         return mapper.mapearObjetoADTO(movimientoOpt.get());
     }
 
+    public void borrarMovimiento(Long id) {
+        this.repository.deleteById(id);
+    }
+
     public MovimientoDTO agregarMovimiento(Long idCuenta, MovimientoDTO movimientoDTO) {
         Movimiento movimientoAGuardar = mapper.mapearDTOAObjeto(movimientoDTO);
-        if (noPuedoSeguirRetirando(idCuenta, movimientoDTO)) throw new LimiteDiarioException();
+        validarDTO(idCuenta, movimientoDTO);
         movimientoAGuardar.setCuenta(this.cuentaService.realizarMovimientoSobreCuenta(idCuenta, movimientoDTO));
         movimientoAGuardar.setSaldoDisponible(movimientoAGuardar.getCuenta().getSaldoActual());
         return mapper.mapearObjetoADTO(this.repository.save(movimientoAGuardar));
+    }
+
+    private void validarDTO(Long idCuenta, MovimientoDTO dto) {
+        if (dto.getValor().compareTo(BigDecimal.ZERO) <= 0) throw new IllegalArgumentException("Valor debe ser más grande que cero");
+        if (noPuedoSeguirRetirando(idCuenta, dto)) throw new LimiteDiarioException();
     }
 
     private boolean noPuedoSeguirRetirando(Long idCuenta, MovimientoDTO dto) {
@@ -51,9 +60,5 @@ public class MovimientoService {
 
     private boolean excedeLimiteDiario(BigDecimal valor) {
         return valor.compareTo(LIMITE_DIARIO_RETIRO) > 0;
-    }
-
-    public void borrarMovimiento(Long id) {
-        this.repository.deleteById(id);
     }
 }

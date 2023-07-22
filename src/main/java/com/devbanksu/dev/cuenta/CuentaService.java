@@ -56,7 +56,6 @@ public class CuentaService {
 
     //Restringir el setear saldoDisponible desde la request.
     public CuentaDTO agregarCuenta(Long idCliente, CuentaDTO cuentaDTO) {
-        cuentaDTO.setIdCliente(idCliente);
         Cuenta cuentaAGuardar = mapper.mapearDTOAObjeto(cuentaDTO);
         cuentaAGuardar.setCliente(this.clienteService.obtenerCliente(idCliente));
         return mapper.mapearObjetoADTO(this.repository.save(cuentaAGuardar));

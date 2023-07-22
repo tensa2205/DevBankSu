@@ -45,13 +45,17 @@ public class ReporteService {
 
         cuentasDeCliente.forEach(cuenta -> {
             CuentaDTO dto = cuentaMapper.mapearObjetoADTO(cuenta);
-            dto.setMovimientos(filtrarMovimientosPorFechas(cuenta.getMovimientos(), inicio, fin)
-                    .stream()
-                    .map(movimientoMapper::mapearObjetoADTO)
-                    .collect(Collectors.toSet()));
+            dto.setMovimientos(filtrarMovimientosPorFechasYMapear(cuenta.getMovimientos(), inicio, fin));
             cuentas.add(dto);
         });
         return cuentas;
+    }
+    private Set<MovimientoDTO> filtrarMovimientosPorFechasYMapear(Set<Movimiento> movimientos, Date inicio, Date fin) {
+        return filtrarMovimientosPorFechas(movimientos, inicio, fin)
+                .stream()
+                .map(movimientoMapper::mapearObjetoADTO)
+                .sorted(Comparator.comparing(MovimientoDTO::getFecha).reversed())
+                .collect(Collectors.toCollection(LinkedHashSet::new));
     }
 
     private Set<Movimiento> filtrarMovimientosPorFechas(Set<Movimiento> movimientos, Date inicio, Date fin) {

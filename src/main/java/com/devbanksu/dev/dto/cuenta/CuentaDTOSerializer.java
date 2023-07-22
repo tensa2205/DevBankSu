@@ -19,10 +19,11 @@ public class CuentaDTOSerializer extends StdSerializer<CuentaDTO> {
     @Override
     public void serialize(CuentaDTO cuentaDTO, JsonGenerator jsonGenerator, SerializerProvider serializerProvider) throws IOException {
         jsonGenerator.writeStartObject();
+        jsonGenerator.writeStringField("Cliente", cuentaDTO.getNombreCliente());
         jsonGenerator.writeNumberField("Numero de Cuenta", cuentaDTO.getNroCuenta());
         jsonGenerator.writeStringField("Tipo de cuenta", cuentaDTO.getTipo().name());
         jsonGenerator.writeNumberField("Saldo Inicial", cuentaDTO.getSaldoInicial());
-        jsonGenerator.writeNumberField("Saldo Actual", cuentaDTO.getSaldoActual());
+        jsonGenerator.writeNumberField("Saldo Disponible", cuentaDTO.getSaldoActual());
         jsonGenerator.writeBooleanField("Estado", cuentaDTO.isEstado());
 
         if (cuentaDTO.getMovimientos() != null) {

@@ -1,5 +1,6 @@
 package com.devbanksu.dev.cliente;
 
+import com.devbanksu.dev.exceptions.EntidadNoEncontradaException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -19,7 +20,7 @@ public class ClienteService {
 
     public Cliente obtenerCliente(Long id) {
         Optional<Cliente> clienteOpt = this.repository.findById(id);
-        return clienteOpt.orElse(null);
+        return clienteOpt.orElseThrow(() -> new EntidadNoEncontradaException(Cliente.class, id));
     }
 
     public Cliente agregarCliente(Cliente cliente) {

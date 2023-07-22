@@ -1,6 +1,6 @@
 package com.devbanksu.dev.movimientos;
 
-import com.devbanksu.dev.cliente.Cliente;
+import com.devbanksu.dev.dto.movimiento.MovimientoDTO;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -15,17 +15,17 @@ public class MovimientoController {
     }
 
     @GetMapping()
-    public List<Movimiento> obtenerMovimientos() {
+    public List<MovimientoDTO> obtenerMovimientos() {
         return this.service.obtenerMovimientos();
     }
     @GetMapping("/{id}")
-    public Movimiento obtenerMovimiento(@PathVariable Long id) {
+    public MovimientoDTO obtenerMovimiento(@PathVariable Long id) {
         return this.service.obtenerMovimiento(id);
     }
 
-    @PostMapping()
-    public Movimiento agregarMovimiento(@RequestBody Movimiento movimiento) {
-        Movimiento movimientoAgregado = this.service.agregarMovimiento(movimiento);
+    @PostMapping("/{idCuenta}")
+    public MovimientoDTO agregarMovimiento(@PathVariable Long idCuenta, @RequestBody MovimientoDTO dto) {
+        MovimientoDTO movimientoAgregado = this.service.agregarMovimiento(idCuenta, dto);
         return movimientoAgregado;
     }
 

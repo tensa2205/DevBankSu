@@ -28,13 +28,12 @@ public class MovimientoController {
     @PostMapping("/{idCuenta}")
     @ResponseStatus(HttpStatus.CREATED)
     public MovimientoDTO agregarMovimiento(@PathVariable Long idCuenta, @RequestBody MovimientoDTO dto) {
-        MovimientoDTO movimientoAgregado = this.service.agregarMovimiento(idCuenta, dto);
-        return movimientoAgregado;
+        return this.service.agregarMovimiento(idCuenta, dto);
     }
 
     @DeleteMapping("/{id}")
-    public String borrarMovimiento(@PathVariable Long id) {
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void borrarMovimiento(@PathVariable Long id) {
         this.service.borrarMovimiento(id);
-        return "Borrado";
     }
 }

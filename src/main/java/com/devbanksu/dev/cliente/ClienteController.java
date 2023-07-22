@@ -31,8 +31,8 @@ public class ClienteController {
     }
 
     @DeleteMapping("/{id}")
-    public String borrarCliente(@PathVariable Long id) {
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void borrarCliente(@PathVariable Long id) {
         this.service.borrarCliente(id);
-        return "Borrado";
     }
 }

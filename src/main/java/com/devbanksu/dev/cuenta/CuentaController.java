@@ -32,8 +32,8 @@ public class CuentaController {
     }
 
     @DeleteMapping("/{id}")
-    public String borrarCuenta(@PathVariable Long id) {
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void borrarCuenta(@PathVariable Long id) {
         this.service.borrarCuenta(id);
-        return "Borrado";
     }
 }

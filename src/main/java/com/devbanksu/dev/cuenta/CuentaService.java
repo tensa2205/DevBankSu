@@ -7,6 +7,8 @@ import com.devbanksu.dev.dto.movimiento.MovimientoDTO;
 import com.devbanksu.dev.exceptions.EntidadNoEncontradaException;
 import com.devbanksu.dev.strategy.OperacionFactory;
 import com.devbanksu.dev.strategy.OperacionStrategy;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,6 +16,8 @@ import java.util.Optional;
 
 @Service
 public class CuentaService {
+    private static final String LOG_PREFIX = "[CUENTA_SERVICE]";
+    private static final Logger logger = LoggerFactory.getLogger(CuentaService.class);
     private final CuentaRepository repository;
     private final CuentaMapper mapper;
     private final OperacionFactory operacionFactory;
@@ -32,6 +36,7 @@ public class CuentaService {
 
     public List<CuentaDTO> obtenerCuentas() {
         List<Cuenta> cuentas = this.repository.findAll();
+        logger.info("{} Hay un total de {} cuentas en el sistema", LOG_PREFIX, cuentas.size());
         return cuentas.stream().map(mapper::mapearObjetoADTO).toList();
     }
 
@@ -43,6 +48,7 @@ public class CuentaService {
         OperacionStrategy strategy = operacionFactory.obtenerStrategy(movimientoDTO.getTipo());
 
         Cuenta cuenta = this.obtenerCuenta(idCuenta);
+        logger.info("{} Se realizara la operacion {} por un valor de {} sobre la cuenta {}", LOG_PREFIX, movimientoDTO.getTipo(), movimientoDTO.getValor(), cuenta.getNroCuenta());
         cuenta.setSaldoActual(strategy.realizarOperacion(cuenta.getSaldoActual(), movimientoDTO.getValor()));
 
         this.repository.save(cuenta);
@@ -51,7 +57,11 @@ public class CuentaService {
 
     public Cuenta obtenerCuenta(Long id) {
         Optional<Cuenta> cuentaOpt = this.repository.findById(id);
-        return cuentaOpt.orElseThrow(() -> new EntidadNoEncontradaException(Cuenta.class, id));
+        if (cuentaOpt.isEmpty()) {
+            logger.warn("{} Se ha intentado buscar la cuenta con ID {} pero no ha sido encontrada", LOG_PREFIX, id);
+            throw new EntidadNoEncontradaException(Cuenta.class, id);
+        }
+        return cuentaOpt.get();
     }
 
     //Restringir el setear saldoDisponible desde la request.
@@ -62,6 +72,7 @@ public class CuentaService {
     }
 
     public void borrarCuenta(Long id) {
+        logger.warn("{} Eliminando cuenta con ID {}", LOG_PREFIX, id);
         this.repository.deleteById(id);
     }
 }

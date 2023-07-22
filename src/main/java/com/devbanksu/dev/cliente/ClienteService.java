@@ -3,13 +3,18 @@ package com.devbanksu.dev.cliente;
 import com.devbanksu.dev.dto.cliente.ClienteDTO;
 import com.devbanksu.dev.dto.cliente.ClienteMapper;
 import com.devbanksu.dev.exceptions.EntidadNoEncontradaException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
-
+//TODO agregar validacion de DTO apra la creación
 @Service
 public class ClienteService {
+    private static final String LOG_PREFIX = "[CLIENTE_SERVICE]";
+
+    private final Logger logger = LoggerFactory.getLogger(ClienteService.class);
     private final ClienteRepository repository;
     private final ClienteMapper mapper;
 
@@ -20,6 +25,7 @@ public class ClienteService {
 
     public List<ClienteDTO> obtenerClientes() {
         List<Cliente> clientes = this.repository.findAll();
+        logger.info("{} Hay un total de {} clientes en el sistema", LOG_PREFIX, clientes.size());
         return clientes.stream().map(mapper::mapearObjetoADTO).toList();
     }
 
@@ -29,7 +35,11 @@ public class ClienteService {
 
     public Cliente obtenerCliente(Long id) {
         Optional<Cliente> clienteOpt = this.repository.findById(id);
-        return clienteOpt.orElseThrow(() -> new EntidadNoEncontradaException(Cliente.class, id));
+        if (clienteOpt.isEmpty()) {
+            logger.warn("{} Se ha intentado buscar el cliente con ID {} pero no ha sido encontrado", LOG_PREFIX, id);
+            throw new EntidadNoEncontradaException(Cliente.class, id);
+        }
+        return clienteOpt.get();
     }
 
     public ClienteDTO agregarCliente(ClienteDTO clienteDTO) {
@@ -38,6 +48,7 @@ public class ClienteService {
     }
 
     public void borrarCliente(Long id) {
+        logger.warn("{} Eliminando cliente con ID {}", LOG_PREFIX, id);
         this.repository.deleteById(id);
     }
 }

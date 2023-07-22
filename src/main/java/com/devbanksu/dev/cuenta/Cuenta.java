@@ -3,11 +3,17 @@ package com.devbanksu.dev.cuenta;
 import com.devbanksu.dev.cliente.Cliente;
 import com.devbanksu.dev.movimientos.Movimiento;
 import jakarta.persistence.*;
+import lombok.*;
 
 import java.math.BigDecimal;
 import java.util.Set;
 
 @Entity
+@Getter
+@Setter
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Cuenta {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) private Long id;

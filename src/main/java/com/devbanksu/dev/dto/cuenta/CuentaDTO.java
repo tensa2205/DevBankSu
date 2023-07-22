@@ -1,4 +1,4 @@
-package com.devbanksu.dev.dto;
+package com.devbanksu.dev.dto.cuenta;
 
 import com.devbanksu.dev.cliente.Cliente;
 import com.devbanksu.dev.cuenta.TipoCuenta;

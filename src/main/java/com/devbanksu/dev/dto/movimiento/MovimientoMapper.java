@@ -14,7 +14,6 @@ public class MovimientoMapper implements Mapper<Movimiento, MovimientoDTO> {
                 .tipo(movimientoDTO.getTipo())
                 .fecha(movimientoDTO.getFecha())
                 .valor(movimientoDTO.getValor())
-                .saldo(movimientoDTO.getSaldo())
                 .build();
     }
 
@@ -24,7 +23,6 @@ public class MovimientoMapper implements Mapper<Movimiento, MovimientoDTO> {
                 .tipo(objeto.getTipo())
                 .fecha(objeto.getFecha())
                 .valor(objeto.getValor())
-                .saldo(objeto.getSaldo())
                 .idCuenta(objeto.getCuenta().getId())
                 .build();
     }

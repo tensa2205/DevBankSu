@@ -17,4 +17,5 @@ public class MovimientoDTO {
     private Date fecha;
     private TipoMovimiento tipo;
     private BigDecimal valor;
+    private BigDecimal saldoDisponible;
 }

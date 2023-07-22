@@ -1,6 +1,8 @@
 package com.devbanksu.dev.movimientos;
 
 import com.devbanksu.dev.dto.movimiento.MovimientoDTO;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -24,6 +26,7 @@ public class MovimientoController {
     }
 
     @PostMapping("/{idCuenta}")
+    @ResponseStatus(HttpStatus.CREATED)
     public MovimientoDTO agregarMovimiento(@PathVariable Long idCuenta, @RequestBody MovimientoDTO dto) {
         MovimientoDTO movimientoAgregado = this.service.agregarMovimiento(idCuenta, dto);
         return movimientoAgregado;

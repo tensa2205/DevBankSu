@@ -1,6 +1,8 @@
 package com.devbanksu.dev.cuenta;
 
 import com.devbanksu.dev.dto.cuenta.CuentaDTO;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -24,6 +26,7 @@ public class CuentaController {
     }
 
     @PostMapping("/{idCliente}")
+    @ResponseStatus(HttpStatus.CREATED)
     public CuentaDTO agregarCuenta(@PathVariable Long idCliente, @RequestBody CuentaDTO dto) {
         return this.service.agregarCuenta(idCliente, dto);
     }

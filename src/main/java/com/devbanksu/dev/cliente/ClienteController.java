@@ -1,6 +1,7 @@
 package com.devbanksu.dev.cliente;
 
 import com.devbanksu.dev.dto.cliente.ClienteDTO;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -24,6 +25,7 @@ public class ClienteController {
     }
 
     @PostMapping()
+    @ResponseStatus(HttpStatus.CREATED)
     public ClienteDTO agregarCliente(@RequestBody ClienteDTO dto) {
         return this.service.agregarCliente(dto);
     }

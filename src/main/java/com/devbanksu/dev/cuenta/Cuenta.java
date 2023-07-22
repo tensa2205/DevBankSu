@@ -27,5 +27,6 @@ public class Cuenta {
 
     private TipoCuenta tipo;
     private BigDecimal saldoInicial;
+    private BigDecimal saldoActual;
     private boolean estado;
 }

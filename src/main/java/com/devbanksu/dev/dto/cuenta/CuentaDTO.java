@@ -15,5 +15,6 @@ public class CuentaDTO {
     private Long idCliente;
     private TipoCuenta tipo;
     private BigDecimal saldoInicial;
+    private BigDecimal saldoActual;
     private boolean estado;
 }

@@ -26,6 +26,10 @@ public class CuentaService {
         this.clienteService = clienteService;
     }
 
+    public List<Cuenta> obtenerCuentasDeCliente(Long idCliente) {
+        return this.repository.obtenerCuentasDeCliente(idCliente);
+    }
+
     public List<CuentaDTO> obtenerCuentas() {
         List<Cuenta> cuentas = this.repository.findAll();
         return cuentas.stream().map(mapper::mapearObjetoADTO).toList();

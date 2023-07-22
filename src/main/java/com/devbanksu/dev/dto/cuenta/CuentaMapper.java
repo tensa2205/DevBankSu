@@ -13,6 +13,7 @@ public class CuentaMapper implements Mapper<Cuenta, CuentaDTO> {
                 .estado(cuentaDTO.isEstado())
                 .tipo(cuentaDTO.getTipo())
                 .saldoInicial(cuentaDTO.getSaldoInicial())
+                .saldoActual(cuentaDTO.getSaldoInicial())
                 .build();
     }
 
@@ -23,6 +24,7 @@ public class CuentaMapper implements Mapper<Cuenta, CuentaDTO> {
                 .estado(objeto.isEstado())
                 .tipo(objeto.getTipo())
                 .saldoInicial(objeto.getSaldoInicial())
+                .saldoActual(objeto.getSaldoActual())
                 .build();
     }
 }

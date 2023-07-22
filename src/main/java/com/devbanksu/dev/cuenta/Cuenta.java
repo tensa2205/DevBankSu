@@ -25,6 +25,7 @@ public class Cuenta {
     @OneToMany(mappedBy = "cuenta")
     private Set<Movimiento> movimientos;
 
+    private Long nroCuenta;
     private TipoCuenta tipo;
     private BigDecimal saldoInicial;
     private BigDecimal saldoActual;

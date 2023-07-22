@@ -33,6 +33,4 @@ public class ClienteController {
         this.service.borrarCliente(id);
         return "Borrado";
     }
-
-
 }

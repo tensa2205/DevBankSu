@@ -1,6 +1,6 @@
 package com.devbanksu.dev.cuenta;
 
-import com.devbanksu.dev.dto.CuentaDTO;
+import com.devbanksu.dev.dto.cuenta.CuentaDTO;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -20,7 +20,7 @@ public class CuentaController {
     }
     @GetMapping("/{id}")
     public CuentaDTO obtenerCuenta(@PathVariable Long id) {
-        return this.service.obtenerCuenta(id);
+        return this.service.obtenerCuentaDTO(id);
     }
 
     @PostMapping("/{idCliente}")

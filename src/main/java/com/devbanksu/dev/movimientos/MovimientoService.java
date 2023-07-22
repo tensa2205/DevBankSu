@@ -1,6 +1,5 @@
 package com.devbanksu.dev.movimientos;
 
-import com.devbanksu.dev.cuenta.Cuenta;
 import com.devbanksu.dev.cuenta.CuentaService;
 import com.devbanksu.dev.dto.movimiento.MovimientoDTO;
 import com.devbanksu.dev.dto.movimiento.MovimientoMapper;
@@ -14,6 +13,7 @@ import java.util.Optional;
 
 @Service
 public class MovimientoService {
+    private static final BigDecimal LIMITE_DIARIO_RETIRO = BigDecimal.valueOf(1000L);
     private final MovimientoRepository repository;
     private final MovimientoMapper mapper;
     private final CuentaService cuentaService;
@@ -44,7 +44,13 @@ public class MovimientoService {
     }
 
     private boolean noPuedoSeguirRetirando(Long idCuenta, MovimientoDTO dto) {
-        return dto.getTipo().isTieneLimiteDiario() && this.repository.obtenerRetirosEnFecha(idCuenta, dto.getFecha()).compareTo(BigDecimal.valueOf(1000)) >= 0;
+        if (!dto.getTipo().tieneLimiteDiario()) return false;
+        BigDecimal sumaDeRetirosDeLaFecha = this.repository.obtenerRetirosEnFecha(idCuenta, dto.getFecha());
+        return excedeLimiteDiario(sumaDeRetirosDeLaFecha) || excedeLimiteDiario(sumaDeRetirosDeLaFecha.add(dto.getValor()));
+    }
+
+    private boolean excedeLimiteDiario(BigDecimal valor) {
+        return valor.compareTo(LIMITE_DIARIO_RETIRO) > 0;
     }
 
     public void borrarMovimiento(Long id) {

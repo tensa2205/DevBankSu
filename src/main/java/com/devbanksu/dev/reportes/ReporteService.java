@@ -31,8 +31,13 @@ public class ReporteService {
     }
 
     public String generarReporte(Long idCliente, Date inicio, Date fin) {
+        validarReporte(inicio, fin);
         List<Cuenta> cuentasDeCliente = this.cuentaService.obtenerCuentasDeCliente(idCliente);
         return convertirAJSONString(procesarCuentasYMovimientos(cuentasDeCliente, inicio, fin));
+    }
+
+    private void validarReporte(Date inicio, Date fin) {
+        if(fin.before(inicio)) throw new IllegalArgumentException("La fecha de inicio no debe ser posterior a la fecha de fin");
     }
 
     private List<CuentaDTO> procesarCuentasYMovimientos(List<Cuenta> cuentasDeCliente, Date inicio, Date fin){

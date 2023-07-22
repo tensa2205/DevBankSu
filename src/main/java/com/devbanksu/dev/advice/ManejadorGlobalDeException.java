@@ -29,4 +29,10 @@ public class ManejadorGlobalDeException {
     String manejarLimiteDiarioExcedido(LimiteDiarioException ex) {
         return ex.getMessage();
     }
+
+    @ExceptionHandler(IllegalArgumentException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    String manejarIllegalArgument(IllegalArgumentException ex) {
+        return ex.getMessage();
+    }
 }

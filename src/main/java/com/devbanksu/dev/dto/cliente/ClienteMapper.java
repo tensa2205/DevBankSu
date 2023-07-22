@@ -2,7 +2,9 @@ package com.devbanksu.dev.dto.cliente;
 
 import com.devbanksu.dev.cliente.Cliente;
 import com.devbanksu.dev.dto.Mapper;
+import org.springframework.stereotype.Component;
 
+@Component
 public class ClienteMapper implements Mapper<Cliente, ClienteDTO> {
     @Override
     public Cliente mapearDTOAObjeto(ClienteDTO clienteDTO) {

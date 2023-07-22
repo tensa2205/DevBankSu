@@ -1,11 +1,14 @@
 package com.devbanksu.dev.movimientos;
 
+import com.devbanksu.dev.cuenta.Cuenta;
 import com.devbanksu.dev.cuenta.CuentaService;
 import com.devbanksu.dev.dto.movimiento.MovimientoDTO;
 import com.devbanksu.dev.dto.movimiento.MovimientoMapper;
 import com.devbanksu.dev.exceptions.EntidadNoEncontradaException;
+import com.devbanksu.dev.exceptions.LimiteDiarioException;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 
@@ -33,10 +36,15 @@ public class MovimientoService {
     }
 
     public MovimientoDTO agregarMovimiento(Long idCuenta, MovimientoDTO movimientoDTO) {
-        movimientoDTO.setIdCuenta(idCuenta);
         Movimiento movimientoAGuardar = mapper.mapearDTOAObjeto(movimientoDTO);
-        movimientoAGuardar.setCuenta(this.cuentaService.obtenerCuenta(idCuenta));
+        if (noPuedoSeguirRetirando(idCuenta, movimientoDTO)) throw new LimiteDiarioException();
+        movimientoAGuardar.setCuenta(this.cuentaService.realizarMovimientoSobreCuenta(idCuenta, movimientoDTO));
+        movimientoAGuardar.setSaldoDisponible(movimientoAGuardar.getCuenta().getSaldoActual());
         return mapper.mapearObjetoADTO(this.repository.save(movimientoAGuardar));
+    }
+
+    private boolean noPuedoSeguirRetirando(Long idCuenta, MovimientoDTO dto) {
+        return dto.getTipo().isTieneLimiteDiario() && this.repository.obtenerRetirosEnFecha(idCuenta, dto.getFecha()).compareTo(BigDecimal.valueOf(1000)) >= 0;
     }
 
     public void borrarMovimiento(Long id) {

@@ -2,10 +2,12 @@ package com.devbanksu.dev.movimientos;
 
 import com.devbanksu.dev.cuenta.Cuenta;
 import com.devbanksu.dev.exceptions.EntidadNoEncontradaException;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
+@Service
 public class MovimientoService {
     private final MovimientoRepository repository;
 
@@ -13,7 +15,7 @@ public class MovimientoService {
         this.repository = repository;
     }
 
-    public List<Movimiento> obtenerMovimiento() {
+    public List<Movimiento> obtenerMovimientos() {
         return this.repository.findAll();
     }
 

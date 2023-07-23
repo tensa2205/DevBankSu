@@ -33,11 +33,14 @@ public class CuentaService {
     public List<Cuenta> obtenerCuentasDeCliente(Long idCliente) {
         return this.repository.obtenerCuentasDeCliente(idCliente);
     }
+    public List<CuentaDTO> obtenerCuentasDTO() {
+        return obtenerCuentas().stream().map(mapper::mapearObjetoADTO).toList();
+    }
 
-    public List<CuentaDTO> obtenerCuentas() {
+    public List<Cuenta> obtenerCuentas() {
         List<Cuenta> cuentas = this.repository.findAll();
         logger.info("{} Hay un total de {} cuentas en el sistema", LOG_PREFIX, cuentas.size());
-        return cuentas.stream().map(mapper::mapearObjetoADTO).toList();
+        return cuentas;
     }
 
     public CuentaDTO obtenerCuentaDTO(Long id) {
@@ -72,6 +75,8 @@ public class CuentaService {
     }
 
     public void borrarCuenta(Long id) {
+        logger.info("{} Buscando cuenta con ID {}", LOG_PREFIX, id);
+        this.obtenerCuenta(id);
         logger.warn("{} Eliminando cuenta con ID {}", LOG_PREFIX, id);
         this.repository.deleteById(id);
     }

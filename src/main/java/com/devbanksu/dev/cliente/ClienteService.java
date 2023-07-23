@@ -23,10 +23,14 @@ public class ClienteService {
         this.mapper = mapper;
     }
 
-    public List<ClienteDTO> obtenerClientes() {
+    public List<ClienteDTO> obtenerClientesDTO() {
+        return obtenerClientes().stream().map(mapper::mapearObjetoADTO).toList();
+    }
+
+    public List<Cliente> obtenerClientes() {
         List<Cliente> clientes = this.repository.findAll();
         logger.info("{} Hay un total de {} clientes en el sistema", LOG_PREFIX, clientes.size());
-        return clientes.stream().map(mapper::mapearObjetoADTO).toList();
+        return clientes;
     }
 
     public ClienteDTO obtenerClienteDTO(Long id) {
@@ -48,6 +52,8 @@ public class ClienteService {
     }
 
     public void borrarCliente(Long id) {
+        logger.info("{} Buscando cliente con ID {}", LOG_PREFIX, id);
+        this.obtenerCliente(id);
         logger.warn("{} Eliminando cliente con ID {}", LOG_PREFIX, id);
         this.repository.deleteById(id);
     }

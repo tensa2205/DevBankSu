@@ -18,7 +18,7 @@ public class CuentaController {
 
     @GetMapping()
     public List<CuentaDTO> obtenerCuentas() {
-        return this.service.obtenerCuentas();
+        return this.service.obtenerCuentasDTO();
     }
     @GetMapping("/{id}")
     public CuentaDTO obtenerCuenta(@PathVariable Long id) {

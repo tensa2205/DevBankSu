@@ -17,7 +17,7 @@ public class ClienteController {
 
     @GetMapping()
     public List<ClienteDTO> obtenerClientes() {
-        return this.service.obtenerClientes();
+        return this.service.obtenerClientesDTO();
     }
     @GetMapping("/{id}")
     public ClienteDTO obtenerCliente(@PathVariable Long id) {

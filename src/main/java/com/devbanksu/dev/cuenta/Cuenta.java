@@ -27,7 +27,7 @@ public class Cuenta {
     @JoinColumn(name="cliente_id", nullable = false)
     private Cliente cliente;
 
-    @OneToMany(mappedBy = "cuenta")
+    @OneToMany(mappedBy = "cuenta", cascade = CascadeType.REMOVE)
     private Set<Movimiento> movimientos;
 
     @Positive

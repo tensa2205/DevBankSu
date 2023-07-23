@@ -17,7 +17,7 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Cliente extends Persona {
-    @OneToMany(mappedBy = "cliente")
+    @OneToMany(mappedBy = "cliente", cascade = CascadeType.REMOVE)
     private Set<Cuenta> cuentas;
 
     @NotEmpty(message = "Se necesita una contraseña!")

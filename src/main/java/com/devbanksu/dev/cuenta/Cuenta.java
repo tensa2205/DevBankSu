@@ -3,6 +3,10 @@ package com.devbanksu.dev.cuenta;
 import com.devbanksu.dev.cliente.Cliente;
 import com.devbanksu.dev.movimientos.Movimiento;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
 import lombok.*;
 
 import java.math.BigDecimal;
@@ -25,9 +29,20 @@ public class Cuenta {
     @OneToMany(mappedBy = "cuenta")
     private Set<Movimiento> movimientos;
 
+    @Positive
+    @Min(value = 1L)
+    @Column(unique = true)
     private Long nroCuenta;
+
+    @NotNull
     private TipoCuenta tipo;
+
+    @Positive
     private BigDecimal saldoInicial;
+
+    @Positive
     private BigDecimal saldoActual;
+
+    @NotNull
     private boolean estado;
 }

@@ -1,9 +1,6 @@
 package com.devbanksu.dev.persona;
 
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.MappedSuperclass;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Positive;
@@ -33,6 +30,7 @@ public class Persona {
     private int edad;
 
     @NotEmpty(message = "Identificacion no puede ser vacío")
+    @Column(unique = true)
     private String identificacion;
 
     @NotEmpty(message = "Direccion no puede ser vacío")

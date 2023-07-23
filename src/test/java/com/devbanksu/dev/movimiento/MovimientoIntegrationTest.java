@@ -62,8 +62,7 @@ public class MovimientoIntegrationTest {
                 .genero("Masculino")
                 .build();
         clienteService.agregarCliente(dtoCliente);
-        List<Cliente> clientes = clienteService.obtenerClientes();
-        Cliente cliente = clientes.get(0);
+        Cliente cliente = clienteService.obtenerClientePorIdentificacion("ABC-421");
 
         CuentaDTO dtoCuenta = CuentaDTO
                 .builder()
@@ -75,8 +74,7 @@ public class MovimientoIntegrationTest {
                 .build();
 
         cuentaService.agregarCuenta(cliente.getId(), dtoCuenta);
-        List<Cuenta> cuentas = cuentaService.obtenerCuentas();
-        cuenta = cuentas.get(0);
+        cuenta = cuentaService.obtenerCuentaPorNumeroDeCuenta(155233L);
     }
 
     @Test

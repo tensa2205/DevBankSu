@@ -8,6 +8,7 @@ import com.devbanksu.dev.cuenta.TipoCuenta;
 import com.devbanksu.dev.movimientos.Movimiento;
 import com.devbanksu.dev.movimientos.MovimientoRepository;
 import com.devbanksu.dev.movimientos.TipoMovimiento;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
@@ -21,7 +22,8 @@ public class ApplicationSeeder implements CommandLineRunner {
     private final CuentaRepository cuentaRepository;
     private final MovimientoRepository movimientoRepository;
 
-
+    @Value("${database.seeder.enabled}")
+    private boolean seederActivo;
 
     public ApplicationSeeder(ClienteRepository clienteRepository, CuentaRepository cuentaRepository, MovimientoRepository movimientoRepository){
         this.clienteRepository = clienteRepository;
@@ -30,6 +32,7 @@ public class ApplicationSeeder implements CommandLineRunner {
     }
     @Override
     public void run(String... args) throws Exception {
+        if (!seederActivo) return;
         Cliente cliente1 = new Cliente("Jose Lema", "M", 25, "ID-1992", "Otavalo sn y principal", "098254785", "1234", true);
         Cliente cliente2 = new Cliente("Marianela Montalvo", "F", 24, "ID-1995", "Amazonas y NNUU", "097548965", "5678", true);
         Cliente cliente3 = new Cliente("Juan Osorio", "M", 27, "ID-1989", "13 junio y Equinoccial", "098874587", "1245", true);

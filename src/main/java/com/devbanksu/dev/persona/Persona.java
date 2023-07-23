@@ -25,7 +25,6 @@ public class Persona {
     @NotEmpty(message = "Género no puede ser vacío")
     private String genero;
 
-    @Positive(message = "Numero inválido")
     @Min(value = 18, message = "Debe ser mayor de 18 años")
     private int edad;
 

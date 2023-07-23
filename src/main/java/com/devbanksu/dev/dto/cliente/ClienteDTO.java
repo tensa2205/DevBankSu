@@ -1,5 +1,6 @@
 package com.devbanksu.dev.dto.cliente;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import lombok.*;
 
 @Getter
@@ -7,6 +8,7 @@ import lombok.*;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@JsonSerialize(using = ClienteDTOSerializer.class)
 @ToString
 public class ClienteDTO {
     private Long id;

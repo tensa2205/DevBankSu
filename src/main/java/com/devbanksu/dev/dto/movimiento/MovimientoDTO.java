@@ -16,7 +16,7 @@ import java.util.Date;
 @JsonSerialize(using = MovimientoDTOSerializer.class)
 public class MovimientoDTO {
     private Long id;
-    private Long idCuenta;
+    private Long nroCuenta;
     private Date fecha;
     private TipoMovimiento tipo;
     private BigDecimal valor;

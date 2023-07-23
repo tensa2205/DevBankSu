@@ -8,6 +8,7 @@ import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 import lombok.*;
+import org.springframework.format.annotation.NumberFormat;
 
 import java.math.BigDecimal;
 import java.util.Set;
@@ -35,14 +36,26 @@ public class Cuenta {
     private Long nroCuenta;
 
     @NotNull
+    @Enumerated(EnumType.STRING)
     private TipoCuenta tipo;
 
-    @Positive
+    @NumberFormat
+    @Min(value = 0L)
     private BigDecimal saldoInicial;
 
-    @Positive
+    @NumberFormat
+    @Min(value = 0L)
     private BigDecimal saldoActual;
 
     @NotNull
     private boolean estado;
+
+    public Cuenta(Cliente cliente, Long nroCuenta, TipoCuenta tipo, BigDecimal saldoInicial, boolean estado) {
+        this.cliente = cliente;
+        this.nroCuenta = nroCuenta;
+        this.tipo = tipo;
+        this.saldoInicial = saldoInicial;
+        this.saldoActual = saldoInicial;
+        this.estado = estado;
+    }
 }

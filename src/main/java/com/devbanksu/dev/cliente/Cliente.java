@@ -24,4 +24,15 @@ public class Cliente extends Persona {
     private String password;
     @NotNull
     private boolean estado;
+
+    public Cliente(String nombre, String genero, int edad, String identificacion, String direccion, String telefono, String password, boolean estado) {
+        this.setNombre(nombre);
+        this.setGenero(genero);
+        this.setEdad(edad);
+        this.setIdentificacion(identificacion);
+        this.setDireccion(direccion);
+        this.setTelefono(telefono);
+        this.setPassword(password);
+        this.setEstado(true);
+    }
 }

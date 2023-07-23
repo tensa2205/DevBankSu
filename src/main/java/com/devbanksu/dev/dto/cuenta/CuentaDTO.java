@@ -14,6 +14,7 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @JsonSerialize(using = CuentaDTOSerializer.class)
+@ToString
 public class CuentaDTO {
     private Set<MovimientoDTO> movimientos;
     private String nombreCliente;

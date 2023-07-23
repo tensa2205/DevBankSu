@@ -1,0 +1,10 @@
+{
+  "nombre": "Pedro Pascal",
+  "genero": "M",
+  "edad": 18,
+  "identificacion": "ID-2990",
+  "direccion": "Nuevo Domicilio 123",
+  "telefono": "12-32123323",
+  "estado": true,
+  "password": "123456"
+}

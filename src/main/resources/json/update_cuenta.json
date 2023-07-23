@@ -1,0 +1,6 @@
+{
+  "nroCuenta": 123456,
+  "tipo": "CORRIENTE",
+  "saldoInicial": 1500,
+  "estado": true
+}

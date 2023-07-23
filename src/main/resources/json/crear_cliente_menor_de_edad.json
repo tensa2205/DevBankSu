@@ -1,0 +1,10 @@
+{
+  "nombre": "Pepito Pepe Sapo",
+  "genero": "M",
+  "edad": 15,
+  "identificacion": "ID-091",
+  "direccion": "Calle de las Flores 123",
+  "telefono": "+5123332",
+  "estado": true,
+  "password": "09912"
+}

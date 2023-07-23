@@ -23,6 +23,7 @@ public class ClienteMapper implements Mapper<Cliente, ClienteDTO> {
     @Override
     public ClienteDTO mapearObjetoADTO(Cliente objeto) {
         return ClienteDTO.builder()
+                .id(objeto.getId())
                 .nombre(objeto.getNombre())
                 .edad(objeto.getEdad())
                 .genero(objeto.getGenero())

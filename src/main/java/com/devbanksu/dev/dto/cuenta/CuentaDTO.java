@@ -16,6 +16,7 @@ import java.util.Set;
 @JsonSerialize(using = CuentaDTOSerializer.class)
 @ToString
 public class CuentaDTO {
+    private Long id;
     private Set<MovimientoDTO> movimientos;
     private String nombreCliente;
     private Long nroCuenta;

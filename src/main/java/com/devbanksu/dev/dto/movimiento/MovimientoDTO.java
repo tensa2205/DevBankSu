@@ -15,6 +15,7 @@ import java.util.Date;
 @AllArgsConstructor
 @JsonSerialize(using = MovimientoDTOSerializer.class)
 public class MovimientoDTO {
+    private Long id;
     private Long idCuenta;
     private Date fecha;
     private TipoMovimiento tipo;

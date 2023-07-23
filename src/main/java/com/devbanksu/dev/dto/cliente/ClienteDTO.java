@@ -9,6 +9,7 @@ import lombok.*;
 @AllArgsConstructor
 @ToString
 public class ClienteDTO {
+    private Long id;
     private String nombre;
     private String genero;
     private int edad;

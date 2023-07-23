@@ -20,6 +20,7 @@ public class CuentaMapper implements Mapper<Cuenta, CuentaDTO> {
     @Override
     public CuentaDTO mapearObjetoADTO(Cuenta objeto) {
         return CuentaDTO.builder()
+                .id(objeto.getId())
                 .nroCuenta(objeto.getNroCuenta())
                 .nombreCliente(objeto.getCliente().getNombre())
                 .estado(objeto.isEstado())

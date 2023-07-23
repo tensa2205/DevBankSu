@@ -21,6 +21,7 @@ public class MovimientoMapper implements Mapper<Movimiento, MovimientoDTO> {
     @Override
     public MovimientoDTO mapearObjetoADTO(Movimiento objeto) {
         return MovimientoDTO.builder()
+                .id(objeto.getId())
                 .tipo(objeto.getTipo())
                 .fecha(objeto.getFecha())
                 .valor(objeto.getValor())

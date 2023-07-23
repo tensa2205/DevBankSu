@@ -36,4 +36,9 @@ public class CuentaController {
     public void borrarCuenta(@PathVariable Long id) {
         this.service.borrarCuenta(id);
     }
+
+    @PutMapping("/{id}")
+    public CuentaDTO actualizarCuenta(@PathVariable Long id, @RequestBody CuentaDTO dto) {
+        return this.service.actualizarCuenta(id, dto);
+    }
 }

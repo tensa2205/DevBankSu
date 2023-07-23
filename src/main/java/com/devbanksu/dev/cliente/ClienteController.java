@@ -35,4 +35,9 @@ public class ClienteController {
     public void borrarCliente(@PathVariable Long id) {
         this.service.borrarCliente(id);
     }
+
+    @PutMapping("/{id}")
+    public ClienteDTO actualizarCliente(@PathVariable Long id, @RequestBody ClienteDTO dto) {
+        return this.service.actualizarCliente(id, dto);
+    }
 }

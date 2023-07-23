@@ -61,4 +61,11 @@ public class ClienteService {
         logger.warn("{} Eliminando cliente con ID {}", LOG_PREFIX, id);
         this.repository.deleteById(id);
     }
+
+    public ClienteDTO actualizarCliente(Long id, ClienteDTO dto) {
+        Cliente clienteExistente = this.obtenerCliente(id);
+        Cliente clienteAUpdatear = mapper.mapearDTOAObjeto(dto);
+        clienteAUpdatear.setId(clienteExistente.getId());
+        return mapper.mapearObjetoADTO(this.repository.save(clienteAUpdatear));
+    }
 }

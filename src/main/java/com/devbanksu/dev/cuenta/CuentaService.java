@@ -1,5 +1,6 @@
 package com.devbanksu.dev.cuenta;
 
+import com.devbanksu.dev.cliente.Cliente;
 import com.devbanksu.dev.cliente.ClienteService;
 import com.devbanksu.dev.dto.cuenta.CuentaDTO;
 import com.devbanksu.dev.dto.cuenta.CuentaMapper;
@@ -82,5 +83,13 @@ public class CuentaService {
         this.obtenerCuenta(id);
         logger.warn("{} Eliminando cuenta con ID {}", LOG_PREFIX, id);
         this.repository.deleteById(id);
+    }
+
+    public CuentaDTO actualizarCuenta(Long id, CuentaDTO dto) {
+        Cuenta cuentaExistente = this.obtenerCuenta(id);
+        Cuenta cuentaAUpdatear = mapper.mapearDTOAObjeto(dto);
+        cuentaAUpdatear.setId(cuentaExistente.getId());
+        cuentaAUpdatear.setCliente(cuentaExistente.getCliente());
+        return mapper.mapearObjetoADTO(this.repository.save(cuentaAUpdatear));
     }
 }

@@ -69,9 +69,9 @@ public class ClienteIntegrationTest {
     }
     
     @Test
-    public void testObtenerClientePorId() {
+    public void testObtenerClientePorIdentificacion() {
         service.agregarCliente(dtoCorrecto);
-        Cliente cliente = obtenerCliente();
+        Cliente cliente = service.obtenerClientePorIdentificacion(dtoCorrecto.getIdentificacion());
         assertNotNull(cliente);
         assertClienteCreado(cliente);
     }
@@ -84,7 +84,7 @@ public class ClienteIntegrationTest {
     @Test
     public void testMapeoADTO() {
         service.agregarCliente(dtoCorrecto);
-        Cliente cliente = obtenerCliente();
+        Cliente cliente = service.obtenerClientePorIdentificacion(dtoCorrecto.getIdentificacion());
         ClienteDTO clienteMapeado = mapper.mapearObjetoADTO(cliente);
         ClienteDTO clienteMapeadoDesdeService = service.obtenerClienteDTO(cliente.getId());
         assertEquals(clienteMapeado.toString(), clienteMapeadoDesdeService.toString());
@@ -98,7 +98,7 @@ public class ClienteIntegrationTest {
     @Test
     public void testBorrarCliente() {
         service.agregarCliente(dtoCorrecto);
-        Cliente cliente = obtenerCliente();
+        Cliente cliente = service.obtenerClientePorIdentificacion(dtoCorrecto.getIdentificacion());
         service.borrarCliente(cliente.getId());
         assertThrows(EntidadNoEncontradaException.class, () -> service.obtenerCliente(cliente.getId()));
     }
@@ -109,11 +109,5 @@ public class ClienteIntegrationTest {
         assertEquals("ABC-421", cliente.getIdentificacion());
         assertEquals("Masculino", cliente.getGenero());
         assertEquals("12345", cliente.getPassword());
-    }
-
-    private Cliente obtenerCliente() {
-        List<Cliente> clientes = service.obtenerClientes();
-        assertEquals(1, clientes.size());
-        return clientes.get(0);
     }
 }

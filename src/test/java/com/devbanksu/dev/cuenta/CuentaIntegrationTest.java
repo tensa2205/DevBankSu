@@ -93,9 +93,7 @@ public class CuentaIntegrationTest {
                 .estado(true)
                 .build();
         service.agregarCuenta(cliente.getId(), dto);
-        List<Cuenta> cuentas = service.obtenerCuentas();
-        assertEquals(1, cuentas.size());
-        Cuenta cuenta = cuentas.get(0);
+        Cuenta cuenta = service.obtenerCuentaPorNumeroDeCuenta(155233L);
         CuentaDTO cuentaMapeada = mapper.mapearObjetoADTO(cuenta);
         CuentaDTO cuentaMapeadaDesdeService = service.obtenerCuentaDTO(cuenta.getId());
         assertEquals(cuentaMapeada.toString(), cuentaMapeadaDesdeService.toString());
@@ -117,9 +115,7 @@ public class CuentaIntegrationTest {
                 .estado(true)
                 .build();
         service.agregarCuenta(cliente.getId(), dto);
-        List<Cuenta> cuentas = service.obtenerCuentas();
-        assertEquals(1, cuentas.size());
-        Cuenta cuenta = cuentas.get(0);
+        Cuenta cuenta = service.obtenerCuentaPorNumeroDeCuenta(155233L);
         service.borrarCuenta(cuenta.getId());
         assertThrows(EntidadNoEncontradaException.class, () -> service.obtenerCuenta(cuenta.getId()));
     }

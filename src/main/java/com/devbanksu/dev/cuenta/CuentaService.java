@@ -30,6 +30,10 @@ public class CuentaService {
         this.clienteService = clienteService;
     }
 
+    public Cuenta obtenerCuentaPorNumeroDeCuenta(Long nroCuenta) {
+        return this.repository.obtenerCuentaPorNumeroDeCuenta(nroCuenta);
+    }
+
     public List<Cuenta> obtenerCuentasDeCliente(Long idCliente) {
         return this.repository.obtenerCuentasDeCliente(idCliente);
     }

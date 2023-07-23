@@ -23,6 +23,10 @@ public class ClienteService {
         this.mapper = mapper;
     }
 
+    public Cliente obtenerClientePorIdentificacion(String identificacion) {
+        return repository.obtenerClientePorIdentificacion(identificacion);
+    }
+
     public List<ClienteDTO> obtenerClientesDTO() {
         return obtenerClientes().stream().map(mapper::mapearObjetoADTO).toList();
     }

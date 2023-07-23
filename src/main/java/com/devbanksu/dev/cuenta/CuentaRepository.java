@@ -10,4 +10,7 @@ public interface CuentaRepository extends JpaRepository<Cuenta, Long> {
     @Query("SELECT c FROM Cuenta c WHERE c.cliente.id = :idCliente")
     public List<Cuenta> obtenerCuentasDeCliente(Long idCliente);
 
+    @Query("SELECT c FROM Cuenta c WHERE c.nroCuenta = :nroCuenta")
+    public Cuenta obtenerCuentaPorNumeroDeCuenta(Long nroCuenta);
+
 }

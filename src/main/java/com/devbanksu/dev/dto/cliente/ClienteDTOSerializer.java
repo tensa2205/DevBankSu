@@ -18,14 +18,14 @@ public class ClienteDTOSerializer extends StdSerializer<ClienteDTO> {
     @Override
     public void serialize(ClienteDTO clienteDTO, JsonGenerator jsonGenerator, SerializerProvider serializerProvider) throws IOException {
         jsonGenerator.writeStartObject();
-        jsonGenerator.writeNumberField("ID Cliente", clienteDTO.getId());
-        jsonGenerator.writeStringField("Nombre", clienteDTO.getNombre());
-        jsonGenerator.writeStringField("Genero", clienteDTO.getGenero());
-        jsonGenerator.writeNumberField("Edad", clienteDTO.getEdad());
-        jsonGenerator.writeStringField("Identificacion", clienteDTO.getIdentificacion());
-        jsonGenerator.writeStringField("Direccion", clienteDTO.getDireccion());
-        jsonGenerator.writeStringField("Telefono", clienteDTO.getTelefono());
-        jsonGenerator.writeBooleanField("Estado", clienteDTO.isEstado());
+        jsonGenerator.writeNumberField("id", clienteDTO.getId());
+        jsonGenerator.writeStringField("nombre", clienteDTO.getNombre());
+        jsonGenerator.writeStringField("genero", clienteDTO.getGenero());
+        jsonGenerator.writeNumberField("edad", clienteDTO.getEdad());
+        jsonGenerator.writeStringField("identificacion", clienteDTO.getIdentificacion());
+        jsonGenerator.writeStringField("direccion", clienteDTO.getDireccion());
+        jsonGenerator.writeStringField("telefono", clienteDTO.getTelefono());
+        jsonGenerator.writeBooleanField("estado", clienteDTO.isEstado());
         jsonGenerator.writeEndObject();
     }
 }

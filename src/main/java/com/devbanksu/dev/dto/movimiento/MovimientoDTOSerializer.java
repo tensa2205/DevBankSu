@@ -18,12 +18,12 @@ public class MovimientoDTOSerializer extends StdSerializer<MovimientoDTO> {
     @Override
     public void serialize(MovimientoDTO movimientoDTO, JsonGenerator jsonGenerator, SerializerProvider serializerProvider) throws IOException {
         jsonGenerator.writeStartObject();
-        jsonGenerator.writeStringField("Fecha", movimientoDTO.getFecha().toString());
-        jsonGenerator.writeNumberField("Numero de Cuenta", movimientoDTO.getNroCuenta());
-        jsonGenerator.writeStringField("Tipo", movimientoDTO.getTipo().name());
-        jsonGenerator.writeNumberField("Valor", movimientoDTO.getValor());
-        jsonGenerator.writeNumberField("Saldo Disponible", movimientoDTO.getSaldoDisponible());
-        jsonGenerator.writeNumberField("ID Movimiento", movimientoDTO.getId());
+        jsonGenerator.writeStringField("fecha", movimientoDTO.getFecha().toString());
+        jsonGenerator.writeNumberField("nroCuenta", movimientoDTO.getNroCuenta());
+        jsonGenerator.writeStringField("tipo", movimientoDTO.getTipo().name());
+        jsonGenerator.writeNumberField("valor", movimientoDTO.getValor());
+        jsonGenerator.writeNumberField("saldoDisponible", movimientoDTO.getSaldoDisponible());
+        jsonGenerator.writeNumberField("id", movimientoDTO.getId());
         jsonGenerator.writeEndObject();
     }
 

@@ -71,13 +71,13 @@ Por cada archivo JSON, voy a especificar la URL a la cual se le deberá hacer el
   * Agarrar valor del campo ID Cliente
 ```
 {
-    "ID Cuenta": {ID DE LA BASE DE DATOS},
-    "Cliente": "{NOMBRE DEL CLIENTE CON EL ID ESPECIFICADO}",
-    "Numero de Cuenta": 123456,
-    "Tipo de cuenta": "CORRIENTE",
-    "Saldo Inicial": 2000,
-    "Saldo Disponible": 2000,
-    "Estado": true
+    "id": {ID DE LA BASE DE DATOS},
+    "nombreCliente": "{NOMBRE DEL CLIENTE CON EL ID ESPECIFICADO}",
+    "nroCuenta": 123456,
+    "tipo": "CORRIENTE",
+    "saldoInicial": 2000,
+    "saldoDisponible": 2000,
+    "estado": true
 }
 ```
 
@@ -91,13 +91,13 @@ Por cada archivo JSON, voy a especificar la URL a la cual se le deberá hacer el
   * Agarrar valor del campo ID Cliente
 ```
 {
-    "ID Cuenta": {ID DE LA BASE DE DATOS},
-    "Cliente": "{NOMBRE DEL CLIENTE CON EL ID ESPECIFICADO}",
-    "Numero de Cuenta": 123456,
-    "Tipo de cuenta": "CORRIENTE",
-    "Saldo Inicial": 1500,
-    "Saldo Disponible": 2000,
-    "Estado": true
+    "id": {ID DE LA BASE DE DATOS},
+    "nombreCliente": "{NOMBRE DEL CLIENTE CON EL ID ESPECIFICADO}",
+    "nroCuenta": 123456,
+    "tipo": "CORRIENTE",
+    "saldoInicial": 1500,
+    "saldoDisponible": 2000,
+    "estado": true
 }
 ```
 
@@ -124,12 +124,12 @@ Cupo diario excedido
     * Agarrar valor del campo ID Cliente
 ```
 {
-    "Fecha": "Fri Jul 21 21:00:00 ART 2023",
-    "Numero de Cuenta": {NUMERO DE CUENTA ASOCIADO AL ID DE CUENTA},
-    "Tipo": "DEPOSITO",
-    "Valor": 3212,
-    "Saldo Disponible": {SALDO DISPONIBLE DE LA CUENTA DESPUÉS DE LA OPERACION},
-    "ID Movimiento": {ID DE LA BASE DE DATOS}
+    "fecha": "Fri Jul 21 21:00:00 ART 2023",
+    "nroCuenta": {NUMERO DE CUENTA ASOCIADO AL ID DE CUENTA},
+    "tipo": "DEPOSITO",
+    "valor": 3212,
+    "saldoDisponible": {SALDO DISPONIBLE DE LA CUENTA DESPUÉS DE LA OPERACION},
+    "id": {ID DE LA BASE DE DATOS}
 }
 ```
 
@@ -143,11 +143,11 @@ Cupo diario excedido
     * Agarrar valor del campo ID Cliente
 ```
 {
-    "Fecha": "Sat Jul 29 21:00:00 ART 2023",
-    "Numero de Cuenta": {NUMERO DE CUENTA ASOCIADO AL ID DE CUENTA},
-    "Tipo": "RETIRO",
-    "Valor": 950,
-    "Saldo Disponible": {SALDO DISPONIBLE DE LA CUENTA DESPUÉS DE LA OPERACION},
-    "ID Movimiento": {ID DE LA BASE DE DATOS}
+    "fecha": "Sat Jul 29 21:00:00 ART 2023",
+    "nroCuenta": {NUMERO DE CUENTA ASOCIADO AL ID DE CUENTA},
+    "tipo": "RETIRO",
+    "valor": 950,
+    "saldoDisponible": {SALDO DISPONIBLE DE LA CUENTA DESPUÉS DE LA OPERACION},
+    "id": {ID DE LA BASE DE DATOS}
 }
 ```

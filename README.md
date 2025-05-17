@@ -9,5 +9,6 @@
 **Además de esto, en la ubicación [src/main/resources/json](src/main/resources/json) se encontrarán con otro archivo readme que los ayudará a testear los endpoints de la aplicación otorgandoles ciertos JSON de prueba.**
 
 TODO
-- Implementación de Kubernetes localmente
+- Microservicios
+- Implementación de Kubernetes localmente, docker localmente
 - Implementación autenticaciones: JWT, Basic Auth, OAuth, Token Auth, Cookie Based
